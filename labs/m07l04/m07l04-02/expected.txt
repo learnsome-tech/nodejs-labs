@@ -1,0 +1,4 @@
+Primary process: true
+Round robin: true
+Worker two status: online
+Worker one draining: draining

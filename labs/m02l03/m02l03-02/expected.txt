@@ -1,0 +1,3 @@
+Timer completed: true
+Elapsed threshold met: true
+Handle unref available: true

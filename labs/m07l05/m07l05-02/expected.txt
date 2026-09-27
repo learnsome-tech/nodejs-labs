@@ -1,0 +1,3 @@
+Initial status: 200
+Lifecycle order: draining -> closed
+Listener terminated: true

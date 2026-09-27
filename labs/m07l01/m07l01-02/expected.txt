@@ -1,0 +1,3 @@
+Exit code: 1
+Captured monitor log: MONITOR:fatal_boom
+Crashed safely: true

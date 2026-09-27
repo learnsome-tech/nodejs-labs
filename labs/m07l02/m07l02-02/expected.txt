@@ -1,0 +1,3 @@
+Spy call count: 1
+Calculation output: 10
+Rejection caught: true

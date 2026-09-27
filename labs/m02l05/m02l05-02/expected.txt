@@ -1,0 +1,3 @@
+Resource target: socket
+Close dispatched: true
+Exit code status: 0

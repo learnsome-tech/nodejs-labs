@@ -1,0 +1,3 @@
+Module system: ESM
+URL protocol file: true
+Path string resolved: true

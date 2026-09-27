@@ -1,0 +1,2 @@
+HTTP2 response payload: h2:/api/metrics
+Session closed successfully: true

@@ -1,0 +1,3 @@
+HMAC prefix: f9546a3b
+Signature valid: true
+Tamper rejected: true

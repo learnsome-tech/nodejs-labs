@@ -1,0 +1,4 @@
+Heap limit allocated: true
+Total heap used: true
+CPU profile nodes captured: true
+Workload executed: true

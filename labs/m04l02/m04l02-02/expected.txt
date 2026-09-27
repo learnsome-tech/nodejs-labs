@@ -1,0 +1,3 @@
+Initial write ok: false
+Drain event fired: true
+Total bytes written: 16

@@ -1,0 +1,3 @@
+First executed: Immediate
+Second executed: Timer
+Direct check transition: true

@@ -1,0 +1,3 @@
+Hex encoded: 4e6f6465
+Base64 encoded: Tm9kZQ==
+Subarray shared memory: true

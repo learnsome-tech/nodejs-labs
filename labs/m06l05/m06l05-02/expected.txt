@@ -1,0 +1,4 @@
+Secure context initialized: true
+Primary domain verified: true
+Wildcard SAN verified: true
+Imposter domain rejected: true

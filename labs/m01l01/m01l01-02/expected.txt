@@ -1,0 +1,3 @@
+Monomorphic distance: 10
+Iterations completed: 10000
+Point coordinates: x=3, y=4

@@ -1,0 +1,3 @@
+Pipeline finished: true
+Stream teardown: true
+Items delivered: data-a, data-b, data-c

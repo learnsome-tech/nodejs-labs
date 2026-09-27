@@ -1,0 +1,3 @@
+Buffer pool size: 65536
+Shared slab buffer: true
+Second buffer offset: true

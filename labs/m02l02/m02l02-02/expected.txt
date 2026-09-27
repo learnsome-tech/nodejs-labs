@@ -1,0 +1,4 @@
+1: Sync turn
+2: NextTick callback
+3: Promise microtask
+4: Standard microtask

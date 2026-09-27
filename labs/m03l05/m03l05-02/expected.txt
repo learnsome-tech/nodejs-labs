@@ -1,0 +1,4 @@
+Original size: 615 bytes
+Gzip compressed: 68 bytes
+Brotli compressed: 47 bytes
+Data integrity verified: true

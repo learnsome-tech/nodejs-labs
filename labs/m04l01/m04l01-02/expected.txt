@@ -1,0 +1,3 @@
+Initial flowing: null
+Active flowing: true
+Collected chunks: payload-a, payload-b

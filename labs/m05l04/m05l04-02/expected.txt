@@ -1,0 +1,2 @@
+Initial value: 10
+Worker modified atomic: 25

@@ -1,0 +1,4 @@
+Total phases count: 6
+Initial phase: Timers (setTimeout)
+I/O poll phase: Poll (fs/net)
+Check phase: Check (setImmediate)
