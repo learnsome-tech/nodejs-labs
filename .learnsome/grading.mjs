@@ -291,17 +291,19 @@ const httpNormalize = (text) =>
     .map((l) => l.replace(/(Ran \d+ tests? in )[\d.]+s/, '$1SECONDSs').replace(/\s+$/, ''))
     .filter((l) => l !== '');
 
-// `shape`: for listings whose output depends on the clock (a benchmark printing how two timings compare, a
-// date filter read against the time of day), the output's structure is graded and the clock's values are
-// not. Lines are compared with dates, times, durations, numbers, booleans and object ids masked. A
-// transcript's `$ command` lines start sections and must match; a section whose command filters by date
-// (--since, --until, --after, --before) may list any of the lines the expected output shows, in any number,
-// because which entries fall inside the window depends on when it runs.
+// `shape`: for listings whose output depends on the clock or the machine (a benchmark printing how two timings
+// compare, a date filter read against the time of day, an interpreter reporting where it is installed), the
+// output's structure is graded and those values are not. Lines are compared with dates, times, durations,
+// absolute paths, numbers, booleans and object ids masked. A transcript's `$ command` lines start sections and
+// must match; a section whose command filters by date (--since, --until, --after, --before) may list any of
+// the lines the expected output shows, in any number, because which entries fall inside the window depends on
+// when it runs.
 const SHAPE_MASKS = [
   [/\b[A-Z][a-z]{2} [A-Z][a-z]{2} +\d{1,2} \d\d:\d\d:\d\d(?: \d{4})?(?: [-+]\d{4})?\b/g, '<date>'],
   [/\b\d{4}-\d\d-\d\d(?:[ T]\d\d:\d\d(?::\d\d(?:\.\d+)?)?(?:Z|\s?[-+]\d\d:?\d\d)?)?/g, '<date>'],
   [/\b\d{1,2}:\d\d(?::\d\d(?:\.\d+)?)?\b/g, '<time>'],
   [/\b\d+ (?:seconds?|minutes?|hours?|days?|weeks?|months?|years?) ago\b/g, '<date>'],
+  [/(?<![\w.:/-])\/(?:[\w.@+-]+\/)*[\w.@+-]+/g, '<path>'],
   [/\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\b/g, '<id>'],
   [/\b(?:True|False|true|false)\b/g, '<bool>'],
   [/[-+]?\d+(?:[.,]\d+)*(?:e[-+]?\d+)?/gi, '<n>'],

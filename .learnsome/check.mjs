@@ -186,7 +186,7 @@ async function execute(lab) {
     const stdin = codeOnStdin
       ? fs.readFileSync(path.join(home, lab.main))
       : lab.stdin ? fs.readFileSync(path.join(lab.dir, 'starter', lab.stdin)) : Buffer.alloc(0);
-    const env = { LANG: 'C.UTF-8', TZ: 'UTC', HOME: home, PATH: searchPath, TMPDIR: tmp, ...extraEnv };
+    const env = { LANG: 'C.UTF-8', TZ: 'UTC', HOME: home, PATH: searchPath, TMPDIR: tmp, XDG_CACHE_HOME: path.join(tmp, '.cache'), ...extraEnv };
     for (const key of PASS_THROUGH) if (process.env[key] && !env[key]) env[key] = process.env[key];
     // mergeStderr: stderr into stdout (2>&1), in the order it was written, as for labs recorded that way.
     const run = lab.mergeStderr ? ['sh', '-c', 'exec "$@" 2>&1', 'sh', ...argv] : argv;
