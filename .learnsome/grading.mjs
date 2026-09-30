@@ -158,13 +158,34 @@ const terraformMask = (line) =>
     .replace(/\/(?:private\/)?(?:var|tmp)\/[\w./-]*tfcourse-[\w./-]*/g, 'WORKDIR')
     .replace(/\/(?:private\/)?var\/folders\/[\w./+-]+/g, 'WORKDIR');
 
+// `terraform providers` prints a module's providers in no fixed order (it walks a map): each run of sibling
+// tree lines (`├── ` or `└── ` after the same indentation) compares as a sorted list, branch glyphs aside.
+const TERRAFORM_TREE = /^((?:[│ ] {3})*)[├└]── /;
+
+function terraformSortSiblings(lines) {
+  const out = [];
+  for (let i = 0; i < lines.length;) {
+    const indent = TERRAFORM_TREE.exec(lines[i])?.[1];
+    if (indent === undefined) {
+      out.push(lines[i++]);
+      continue;
+    }
+    const run = [];
+    for (; i < lines.length && TERRAFORM_TREE.exec(lines[i])?.[1] === indent; i++) run.push(lines[i].replace(TERRAFORM_TREE, '$1── '));
+    out.push(...run.sort());
+  }
+  return out;
+}
+
 const terraformNormalize = (text) =>
-  text
-    .replace(/\r\n?/g, '\n')
-    .split('\n')
-    .map((l) => l.replace(ANSI, '').trimEnd())
-    .filter((l) => l !== '' && !TERRAFORM_NOISE.some((re) => re.test(l)))
-    .map(terraformMask);
+  terraformSortSiblings(
+    text
+      .replace(/\r\n?/g, '\n')
+      .split('\n')
+      .map((l) => l.replace(ANSI, '').trimEnd())
+      .filter((l) => l !== '' && !TERRAFORM_NOISE.some((re) => re.test(l)))
+      .map(terraformMask),
+  );
 
 // dotnet-course scripts/output.ts: the SDK's restore, build and test-platform banners, Kestrel's start-up
 // lines and stack-trace frames dropped; times, paths, guids and timestamps masked; blank lines ignored.
@@ -255,6 +276,81 @@ const gitNormalize = (text) =>
     .map((l) => l.replace(/^\s+(\d+)(?=\s)/, '$1'))
     .filter((l) => l !== '');
 
+// apis-course scripts/output.ts: an HTTP transcript compared byte for byte (status lines, headers, bodies)
+// except the two headers that differ on every run (Date, Server), the elapsed time a test suite reports and
+// the directory in a traceback's `File "..."` line; blank lines ignored. The course recorded each command of a
+// session on its own, so the next command's output started on a new line; run as one script, a body without
+// a final newline runs into the next status line or test report, which starts a line again here.
+const httpNormalize = (text) =>
+  text
+    .replace(/\r\n?/g, '\n')
+    .replace(/(?<=[^\n])(?=HTTP\/\d(?:\.\d)? \d{3}\b|Ran \d+ tests? in )/g, '\n')
+    .split('\n')
+    .filter((l) => !/^(?:Date|Server):\s/i.test(l))
+    .map((l) => l.replace(/File "[^"]*\/([^"/]+)", line/, 'File "$1", line'))
+    .map((l) => l.replace(/(Ran \d+ tests? in )[\d.]+s/, '$1SECONDSs').replace(/\s+$/, ''))
+    .filter((l) => l !== '');
+
+// `shape`: for listings whose output depends on the clock (a benchmark printing how two timings compare, a
+// date filter read against the time of day), the output's structure is graded and the clock's values are
+// not. Lines are compared with dates, times, durations, numbers, booleans and object ids masked. A
+// transcript's `$ command` lines start sections and must match; a section whose command filters by date
+// (--since, --until, --after, --before) may list any of the lines the expected output shows, in any number,
+// because which entries fall inside the window depends on when it runs.
+const SHAPE_MASKS = [
+  [/\b[A-Z][a-z]{2} [A-Z][a-z]{2} +\d{1,2} \d\d:\d\d:\d\d(?: \d{4})?(?: [-+]\d{4})?\b/g, '<date>'],
+  [/\b\d{4}-\d\d-\d\d(?:[ T]\d\d:\d\d(?::\d\d(?:\.\d+)?)?(?:Z|\s?[-+]\d\d:?\d\d)?)?/g, '<date>'],
+  [/\b\d{1,2}:\d\d(?::\d\d(?:\.\d+)?)?\b/g, '<time>'],
+  [/\b\d+ (?:seconds?|minutes?|hours?|days?|weeks?|months?|years?) ago\b/g, '<date>'],
+  [/\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\b/g, '<id>'],
+  [/\b(?:True|False|true|false)\b/g, '<bool>'],
+  [/[-+]?\d+(?:[.,]\d+)*(?:e[-+]?\d+)?/gi, '<n>'],
+];
+const DATE_FILTER = /(?:^|\s)--(?:since|until|after|before)[=\s]/;
+
+function shapeSections(text) {
+  const sections = [{ command: null, clock: false, lines: [] }];
+  for (const raw of text.replace(/\r\n?/g, '\n').split('\n')) {
+    const line = raw.replace(ANSI, '').replace(/\s+$/, '');
+    if (line === '') continue;
+    const masked = SHAPE_MASKS.reduce((acc, [re, to]) => acc.replace(re, to), line);
+    if (line.startsWith('$ ')) sections.push({ command: masked, clock: DATE_FILTER.test(line), lines: [] });
+    else sections.at(-1).lines.push(masked);
+  }
+  return sections;
+}
+
+function shapeGrade(stdout, stderr, expectedText) {
+  const expected = shapeSections(expectedText);
+  const actual = shapeSections(stdout + stderr);
+  const anywhere = new Set(expected.flatMap((s) => s.lines));
+  const diff = [];
+  let line = 0;
+  for (let i = 0; i < Math.max(expected.length, actual.length) && diff.length < MAX_DIFF; i++) {
+    const exp = expected[i];
+    const act = actual[i];
+    if (i > 0) {
+      line += 1;
+      if (exp?.command !== act?.command) {
+        diff.push({ line, expected: exp?.command ?? null, actual: act?.command ?? null });
+        break; // the sections after a different command do not line up
+      }
+    }
+    if (exp.clock) {
+      for (const got of act.lines) {
+        line += 1;
+        if (!anywhere.has(got)) diff.push({ line, expected: null, actual: got });
+      }
+      continue;
+    }
+    for (let j = 0; j < Math.max(exp.lines.length, act.lines.length) && diff.length < MAX_DIFF; j++) {
+      line += 1;
+      if (exp.lines[j] !== act.lines[j]) diff.push({ line, expected: exp.lines[j] ?? null, actual: act.lines[j] ?? null });
+    }
+  }
+  return { passed: diff.length === 0, diff };
+}
+
 // A pytest report is graded on its outcome, not its text: which tests passed, failed or errored (the -v
 // rows, the short summary's FAILED/ERROR rows, the ids --collect-only lists) and the final tally. Timings,
 // the terminal width, the platform header and the tracebacks' wording belong to the machine and the pytest
@@ -332,9 +428,10 @@ export function transcriptExpected(source) {
  * Stdout alone is compared first; when that differs, stdout followed by stderr is compared under the
  * courses' own rules (expected.txt is recorded as stdout + stderr). The smaller diff is reported.
  * `grading` (the lab index's) picks a course's comparison: SQL result sets cell by cell, ansible, terraform,
- * .NET and git output with their machine-specific noise set aside, pytest reports by their outcome, and a
- * replayed >>> session (`repl`: errors in place on stdout) under the courses' rules for tracebacks even though
- * nothing went to stderr.
+ * .NET and git output with their machine-specific noise set aside, HTTP transcripts without their per-run
+ * headers, pytest reports by their outcome, clock-dependent output by its shape, and a replayed >>> session
+ * (`repl`: errors in place on stdout) under the courses' rules for tracebacks even though nothing went to
+ * stderr.
  */
 export function gradeOutput(stdout, stderr, expectedText, { grading = 'lines' } = {}) {
   if (grading === 'ansible') return normalizedGrade(ansibleNormalize, stdout, stderr, expectedText);
@@ -342,6 +439,8 @@ export function gradeOutput(stdout, stderr, expectedText, { grading = 'lines' } 
   if (grading === 'dotnet') return normalizedGrade(dotnetNormalize, stdout, stderr, expectedText);
   if (grading === 'git') return normalizedGrade(gitNormalize, stdout, stderr, expectedText);
   if (grading === 'bash') return normalizedGrade(bashNormalize, stdout, stderr, expectedText);
+  if (grading === 'http') return normalizedGrade(httpNormalize, stdout, stderr, expectedText);
+  if (grading === 'shape') return shapeGrade(stdout, stderr, expectedText);
   if (grading === 'pytest') return pytestGrade(stdout, stderr, expectedText);
   const stdoutDiff = lineDiff(stdout, expectedText);
   if (stdoutDiff.length === 0) return { passed: true, diff: [] };
