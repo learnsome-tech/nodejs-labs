@@ -1,0 +1,21 @@
+{
+  "lab": "m07l04-02",
+  "lesson": "m07l04",
+  "title": "Cluster Architecture",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node cluster_architecture.ts",
+  "main": "cluster_architecture.ts",
+  "files": [
+    "cluster_architecture.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

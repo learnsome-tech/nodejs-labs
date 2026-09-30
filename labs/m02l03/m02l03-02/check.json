@@ -1,0 +1,21 @@
+{
+  "lab": "m02l03-02",
+  "lesson": "m02l03",
+  "title": "Timer Scheduling",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node timer_scheduling.ts",
+  "main": "timer_scheduling.ts",
+  "files": [
+    "run.sh",
+    "timer_scheduling.ts",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

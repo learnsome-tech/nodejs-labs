@@ -1,0 +1,21 @@
+{
+  "lab": "m04l02-02",
+  "lesson": "m04l02",
+  "title": "Writable Drain Mechanics",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node writable_drain_mechanics.ts",
+  "main": "writable_drain_mechanics.ts",
+  "files": [
+    "run.sh",
+    "tsconfig.json",
+    "writable_drain_mechanics.ts"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

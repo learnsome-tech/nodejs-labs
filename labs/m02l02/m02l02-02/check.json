@@ -1,0 +1,21 @@
+{
+  "lab": "m02l02-02",
+  "lesson": "m02l02",
+  "title": "Microtask Priority",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node microtask_priority.ts",
+  "main": "microtask_priority.ts",
+  "files": [
+    "microtask_priority.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

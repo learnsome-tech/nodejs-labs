@@ -1,0 +1,21 @@
+{
+  "lab": "m05l04-02",
+  "lesson": "m05l04",
+  "title": "Worker Threads Shared Mem",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node worker_threads_shared_mem.ts",
+  "main": "worker_threads_shared_mem.ts",
+  "files": [
+    "run.sh",
+    "tsconfig.json",
+    "worker_threads_shared_mem.ts"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

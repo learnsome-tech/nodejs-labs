@@ -1,0 +1,21 @@
+{
+  "lab": "m04l03-02",
+  "lesson": "m04l03",
+  "title": "Stream Backpressure",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node stream_backpressure.ts",
+  "main": "stream_backpressure.ts",
+  "files": [
+    "run.sh",
+    "stream_backpressure.ts",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

@@ -1,0 +1,21 @@
+{
+  "lab": "m04l04-02",
+  "lesson": "m04l04",
+  "title": "Transform Packet Decoder",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node transform_packet_decoder.ts",
+  "main": "transform_packet_decoder.ts",
+  "files": [
+    "run.sh",
+    "transform_packet_decoder.ts",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

@@ -1,0 +1,21 @@
+{
+  "lab": "m02l04-02",
+  "lesson": "m02l04",
+  "title": "Poll Check Cycle",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node poll_check_cycle.ts",
+  "main": "poll_check_cycle.ts",
+  "files": [
+    "poll_check_cycle.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

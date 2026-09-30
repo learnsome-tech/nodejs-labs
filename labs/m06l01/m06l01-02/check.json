@@ -1,0 +1,21 @@
+{
+  "lab": "m06l01-02",
+  "lesson": "m06l01",
+  "title": "Native Http Lifecycle",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node native_http_lifecycle.ts",
+  "main": "native_http_lifecycle.ts",
+  "files": [
+    "native_http_lifecycle.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

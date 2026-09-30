@@ -1,0 +1,21 @@
+{
+  "lab": "m03l05-02",
+  "lesson": "m03l05",
+  "title": "Zlib Compression",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node zlib_compression.ts",
+  "main": "zlib_compression.ts",
+  "files": [
+    "run.sh",
+    "tsconfig.json",
+    "zlib_compression.ts"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

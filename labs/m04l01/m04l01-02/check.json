@@ -1,0 +1,21 @@
+{
+  "lab": "m04l01-02",
+  "lesson": "m04l01",
+  "title": "Readable Stream Modes",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node readable_stream_modes.ts",
+  "main": "readable_stream_modes.ts",
+  "files": [
+    "readable_stream_modes.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

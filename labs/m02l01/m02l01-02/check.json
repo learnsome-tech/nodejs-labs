@@ -1,0 +1,21 @@
+{
+  "lab": "m02l01-02",
+  "lesson": "m02l01",
+  "title": "Event Loop Phases",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node event_loop_phases.ts",
+  "main": "event_loop_phases.ts",
+  "files": [
+    "event_loop_phases.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

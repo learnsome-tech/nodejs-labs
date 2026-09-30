@@ -1,0 +1,21 @@
+{
+  "lab": "m07l05-02",
+  "lesson": "m07l05",
+  "title": "Graceful Shutdown Docker",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node graceful_shutdown_docker.ts",
+  "main": "graceful_shutdown_docker.ts",
+  "files": [
+    "graceful_shutdown_docker.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

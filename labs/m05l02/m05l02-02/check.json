@@ -1,0 +1,21 @@
+{
+  "lab": "m05l02-02",
+  "lesson": "m05l02",
+  "title": "Recursive Dir Traversal",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node recursive_dir_traversal.ts",
+  "main": "recursive_dir_traversal.ts",
+  "files": [
+    "recursive_dir_traversal.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

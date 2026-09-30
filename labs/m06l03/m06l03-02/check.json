@@ -1,0 +1,21 @@
+{
+  "lab": "m06l03-02",
+  "lesson": "m06l03",
+  "title": "Http2 Multiplexing",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node http2_multiplexing.ts",
+  "main": "http2_multiplexing.ts",
+  "files": [
+    "http2_multiplexing.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Node.js Internals & Backend Services labs",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "postCreateCommand": "npm ci --no-audit --no-fund",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "README.md"
+      ]
+    },
+    "vscode": {
+      "extensions": []
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "lab": "m03l01-02",
+  "lesson": "m03l01",
+  "title": "Buffer Slab",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node buffer_slab.ts",
+  "main": "buffer_slab.ts",
+  "files": [
+    "buffer_slab.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

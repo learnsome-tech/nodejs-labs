@@ -1,19 +1,35 @@
-# TLS & HTTPS Encryption: Certificates & SNI Contexts
+# m06l05 · TLS & HTTPS Encryption: Certificates & SNI Contexts
 
-**Course**: [Node.js Internals & Backend Services](https://learnsome.tech/courses/nodejs-course)  
-**Module**: Native HTTP, HTTPS & HTTP/2  
-**Lesson**: `m06l05`
+Module 6: Native HTTP, HTTPS & HTTP/2 · lesson 6.5 · Pro · [Open the lesson](https://learnsome.tech/learn/nodejs-course/m06l05)
 
-## Links
+**Goal:** You can configure production TLS contexts enforcing modern ciphers, manage multi-tenant certificates with Server Name Indication (SNI), and validate certificates.
 
-- [Watch lesson](https://learnsome.tech/courses/nodejs-course/watch?lesson=m06l05)
-- [Handbook](https://learnsome.tech/courses/nodejs-course/book#lesson-6-5)
-- [Exercises](EXERCISES.md)
+## Labs
 
-## Artifact directories
+| Lab | What it is | Check |
+| --- | --- | --- |
+| [m06l05-02](m06l05-02/) | Tls Certificate Validation | Graded |
 
-- [`m06l05-02/`](m06l05-02/)
+## Exercises
+
+Open exercises from the lesson, to try on your own. They have no answer files: work them out, and use the labs above as reference.
+
+### Build a Multi-Tenant HTTPS Server with SNI Contexts
+
+1. Initialize a secure context enforcing TLS version one point three.
+2. Register multiple domain certificates using server addContext.
+3. Validate client connections matching Server Name Indication domains.
+4. Assert that mismatched hostnames fail certificate identity checks.
+
+> **Hint:** Invoke server.addContext('sub.domain.com', { key, cert }) on the HTTPS server.
+
+## Check yourself
+
+- What security advantage does enforcing TLS 1.3 provide over older TLS protocols?
+- How does Server Name Indication (SNI) enable hosting multiple HTTPS domains on one IP?
+- Why should rejectUnauthorized never be set to false in production Node clients?
+- What function does tls.checkServerIdentity() perform during client handshakes?
 
 ---
 
-© LearnSome.tech · support@iwantto.learnsome.tech
+[Course README](../../README.md) · [Node.js Internals & Backend Services on LearnSome.tech](https://learnsome.tech/courses/nodejs-course)

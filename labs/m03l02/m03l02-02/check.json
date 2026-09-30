@@ -1,0 +1,21 @@
+{
+  "lab": "m03l02-02",
+  "lesson": "m03l02",
+  "title": "Buffer Encodings",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node buffer_encodings.ts",
+  "main": "buffer_encodings.ts",
+  "files": [
+    "buffer_encodings.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

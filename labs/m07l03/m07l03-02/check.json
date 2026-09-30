@@ -1,0 +1,21 @@
+{
+  "lab": "m07l03-02",
+  "lesson": "m07l03",
+  "title": "Diagnostic Profiling",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node diagnostic_profiling.ts",
+  "main": "diagnostic_profiling.ts",
+  "files": [
+    "diagnostic_profiling.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

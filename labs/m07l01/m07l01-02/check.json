@@ -1,0 +1,21 @@
+{
+  "lab": "m07l01-02",
+  "lesson": "m07l01",
+  "title": "Global Error Trapping",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node global_error_trapping.ts",
+  "main": "global_error_trapping.ts",
+  "files": [
+    "global_error_trapping.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

@@ -1,0 +1,16 @@
+{
+  "name": "learnsome-lab-node-packages",
+  "private": true,
+  "description": "npm packages the LearnSome.tech lab sandbox provides to this course's JavaScript, TypeScript and component labs (linked into each run as node_modules). nodejs-labs: npm ci installs them.",
+  "dependencies": {
+    "axe-core": "4.13.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "jsdom": "26.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwind-merge": "3.7.0",
+    "tsx": "4.23.15",
+    "zod": "3.25.76"
+  }
+}

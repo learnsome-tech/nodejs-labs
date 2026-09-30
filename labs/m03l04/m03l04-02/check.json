@@ -1,0 +1,21 @@
+{
+  "lab": "m03l04-02",
+  "lesson": "m03l04",
+  "title": "Crypto Primitives",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node crypto_primitives.ts",
+  "main": "crypto_primitives.ts",
+  "files": [
+    "crypto_primitives.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

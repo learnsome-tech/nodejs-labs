@@ -1,0 +1,21 @@
+{
+  "lab": "m01l02-02",
+  "lesson": "m01l02",
+  "title": "Thread Pool Dispatch",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node thread_pool_dispatch.ts",
+  "main": "thread_pool_dispatch.ts",
+  "files": [
+    "run.sh",
+    "thread_pool_dispatch.ts",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

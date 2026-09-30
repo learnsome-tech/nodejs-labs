@@ -1,0 +1,21 @@
+{
+  "lab": "m07l02-02",
+  "lesson": "m07l02",
+  "title": "Native Test Runner",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node native_test_runner.ts",
+  "main": "native_test_runner.ts",
+  "files": [
+    "native_test_runner.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

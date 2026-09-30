@@ -1,0 +1,21 @@
+{
+  "lab": "m05l05-02",
+  "lesson": "m05l05",
+  "title": "Worker Thread Pool",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node worker_thread_pool.ts",
+  "main": "worker_thread_pool.ts",
+  "files": [
+    "run.sh",
+    "tsconfig.json",
+    "worker_thread_pool.ts"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

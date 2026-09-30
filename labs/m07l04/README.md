@@ -1,19 +1,35 @@
-# Cluster Architecture: node:cluster & Zero-Downtime
+# m07l04 · Cluster Architecture: node:cluster & Zero-Downtime
 
-**Course**: [Node.js Internals & Backend Services](https://learnsome.tech/courses/nodejs-course)  
-**Module**: Diagnostics & Production Hardening  
-**Lesson**: `m07l04`
+Module 7: Diagnostics & Production Hardening · lesson 7.4 · Pro · [Open the lesson](https://learnsome.tech/learn/nodejs-course/m07l04)
 
-## Links
+**Goal:** You can scale Node.js web applications across multiple CPU cores using node:cluster, coordinate port sharing, and execute zero-downtime rolling worker restarts.
 
-- [Watch lesson](https://learnsome.tech/courses/nodejs-course/watch?lesson=m07l04)
-- [Handbook](https://learnsome.tech/courses/nodejs-course/book#lesson-7-4)
-- [Exercises](EXERCISES.md)
+## Labs
 
-## Artifact directories
+| Lab | What it is | Check |
+| --- | --- | --- |
+| [m07l04-02](m07l04-02/) | Cluster Architecture | Graded |
 
-- [`m07l04-02/`](m07l04-02/)
+## Exercises
+
+Open exercises from the lesson, to try on your own. They have no answer files: work them out, and use the labs above as reference.
+
+### Build a Resilient Clustered Web Cluster
+
+1. Design a primary cluster process that inspects CPU core counts.
+2. Fork child workers and balance incoming HTTP traffic across ports.
+3. Implement a rolling restart signal handler that replaces workers.
+4. Verify that in flight requests complete before workers terminate.
+
+> **Hint:** Listen to worker.on('listening') before invoking oldWorker.disconnect().
+
+## Check yourself
+
+- How does node:cluster allow multiple worker processes to bind to the same TCP port?
+- What scheduling policy does Node.js use by default to distribute connections across cluster workers?
+- Why must a rolling restart spawn a replacement worker before disconnecting the old worker?
+- What is the difference between worker.disconnect() and worker.kill()?
 
 ---
 
-© LearnSome.tech · support@iwantto.learnsome.tech
+[Course README](../../README.md) · [Node.js Internals & Backend Services on LearnSome.tech](https://learnsome.tech/courses/nodejs-course)

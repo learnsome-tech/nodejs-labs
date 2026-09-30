@@ -1,0 +1,21 @@
+{
+  "lab": "m01l03-02",
+  "lesson": "m01l03",
+  "title": "Memory Profile",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node memory_profile.ts",
+  "main": "memory_profile.ts",
+  "files": [
+    "memory_profile.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

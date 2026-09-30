@@ -1,0 +1,21 @@
+{
+  "lab": "m02l05-02",
+  "lesson": "m02l05",
+  "title": "Close Teardown",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node close_teardown.ts",
+  "main": "close_teardown.ts",
+  "files": [
+    "close_teardown.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}

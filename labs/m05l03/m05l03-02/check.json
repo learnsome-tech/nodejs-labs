@@ -1,0 +1,21 @@
+{
+  "lab": "m05l03-02",
+  "lesson": "m05l03",
+  "title": "Child Process Spawn",
+  "mode": "graded",
+  "runner": "node-ts",
+  "command": "node child_process_spawn.ts",
+  "main": "child_process_spawn.ts",
+  "files": [
+    "child_process_spawn.ts",
+    "run.sh",
+    "tsconfig.json"
+  ],
+  "stdin": null,
+  "expected": "expected.txt",
+  "grading": "lines",
+  "requires": [
+    "node"
+  ],
+  "note": null
+}
